@@ -9,7 +9,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::prefix('auth')->group(function () {
-    Route::PUT('register', [AuthController::class, 'register']);
-    Route::POST('login', [AuthController::class, 'login']);
-    Route::POST('logout', [AuthController::class, 'logout']);
+    Route::POST('/register', [AuthController::class, 'register']);
+    Route::POST('/login', [AuthController::class, 'login']);
+    Route::POST('/logout', [AuthController::class, 'logout']);
 });
