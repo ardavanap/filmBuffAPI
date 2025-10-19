@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laravel\Sanctum\PersonalAccessToken;
+use Laravel\Sanctum\Http\Middleware;
 use App\Models\User;
 
 class AuthController extends Controller
 {
     public function register(Request $request){
-
-        // TODO: return json for validation errors
 
         $validatedData = $request->validate([
             'name' => 'required|max:255',
@@ -19,13 +19,18 @@ class AuthController extends Controller
 
         // TODO: register users
 
-        User::firstOrNew([
+        $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password']),
-        ])->save();
+        ]);
 
-        return 'user created';
+        $token = $user->createToken('user');
+
+        return [
+            'user' => $user,
+            'token' => $token->plainTextToken
+        ];
 
     }
 
@@ -39,6 +44,8 @@ class AuthController extends Controller
         ]);
 
         // TODO: Login user
+
+
 
     }
 
