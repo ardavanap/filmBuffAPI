@@ -24,7 +24,7 @@ class AuthController extends Controller
             'password' => bcrypt($validatedData['password']),
         ]);
 
-        $token = $user->createToken('user');
+        $token = $user->createToken($request->name);
 
         return [
             'user' => $user,
@@ -48,7 +48,7 @@ class AuthController extends Controller
             return ['error' => 'The provided credentials are incorrect.'];
         }
 
-        $token = $user->createToken('user');
+        $token = $user->createToken($user->name);
 
         return [
             'user' => $user,
