@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MovieRequest;
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use App\Models\User;
 
 class MovieController extends Controller
 {
@@ -59,7 +60,12 @@ class MovieController extends Controller
      */
     public function destroy(string $id)
     {
-        // TODO: only admin should be allowed to delete a Movie
+
+        if(!User::isAdmin()){
+            return ["message" => "Unauthorized"];
+        }
         Movie::destroy($id);
+
+        return ["message" => "Movie deleted"];
     }
 }
