@@ -9,9 +9,7 @@ use App\Models\User;
 
 class MovieController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
 //        $movies = Movie::all();
@@ -20,9 +18,7 @@ class MovieController extends Controller
         return Movie::paginate(15)->toResourceCollection();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(MovieRequest $request)
     {
         $validatedData = $request->validated();
@@ -40,25 +36,19 @@ class MovieController extends Controller
         return Movie::find($movie->id)->toResource();
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
-        return Movie::find($id)->toResource();
+        return Movie::findOrFail($id)->toResource();
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(MovieRequest $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
 
