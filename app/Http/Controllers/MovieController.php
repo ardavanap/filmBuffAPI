@@ -14,9 +14,10 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Movie::all();
+//        $movies = Movie::all();
 
-        return ['movies' => $movies];
+//        return ['movies' => $movies];
+        return Movie::paginate(15)->toResourceCollection();
     }
 
     /**
@@ -36,7 +37,7 @@ class MovieController extends Controller
             'category_id' => $validatedData['category_id'],
         ]);
 
-        return ['movie' => $movie];
+        return Movie::find($movie->id)->toResource();
     }
 
     /**
@@ -44,7 +45,7 @@ class MovieController extends Controller
      */
     public function show(string $id)
     {
-        return ["movie" => Movie::where( "id" ,$id)->first()];
+        return Movie::find($id)->toResource();
     }
 
     /**
