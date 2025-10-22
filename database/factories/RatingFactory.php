@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Movie;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,9 @@ class RatingFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "user_id" => User::query()->inRandomOrder()->first(),
+            "movie_id" => Movie::query()->inRandomOrder()->first(),
+            "score" => $this->faker->randomDigit(),
         ];
     }
 }
