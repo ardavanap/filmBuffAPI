@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     public function show(string $id){
-        return Movie::findOrFail($id)->comments;
+        return Movie::findOrFail($id)->comments->map->only(['content']);
     }
 
     public function store(string $id ,Request $request){
-        // TODO: add validation
+
         $validated = $request->validate([
             'content' => 'required|max:255|min:2',
         ]);
@@ -23,5 +23,10 @@ class CommentController extends Controller
             'content' => $validated['content'],
             'movie_id'  =>  $id
         ]);
+
+        return [
+            "message" => "Comment added",
+            "comment" => $comment
+        ];
     }
 }
