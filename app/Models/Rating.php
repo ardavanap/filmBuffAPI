@@ -10,9 +10,10 @@ class Rating extends Model
     use HasFactory;
 
     public $timestamps = false;
-
     protected $fillable = [
-
+        "user_id",
+        "movie_id",
+        "score",
     ];
 
     public function user() {

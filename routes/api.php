@@ -22,7 +22,7 @@ Route::prefix('movie/{id}/')->middleware("auth:sanctum")->group(function () {
 });
 
 // _____________________________________** RATING routes **________________________________ //
-Route::prefix('movie/{id}/')->group(function () {
+Route::prefix('movie/{id}/')->middleware('auth:sanctum')->group(function () {
     Route::GET('/rating', [RatingController::class, 'show']);
     Route::POST('/rate', [RatingController::class, 'store']);
 });
