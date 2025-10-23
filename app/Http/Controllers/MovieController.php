@@ -43,9 +43,24 @@ class MovieController extends Controller
     }
 
 
-    public function update(MovieRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:500',
+            'release_year' => 'nullable',
+            'duration' => 'nullable|integer',
+            'trailer_url' => 'nullable|string|max:255',
+        ]);
+
+        $movie = Movie::find($id);
+
+        $movie->update($validated);
+
+        return [
+            "message" => "Movie updated successfully",
+            "data" => $movie->toResource(),
+        ] ;
     }
 
 
