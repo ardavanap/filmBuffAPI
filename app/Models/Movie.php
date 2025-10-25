@@ -53,7 +53,8 @@ class Movie extends Model
     public function scopeCategory($query, $categoryQuery) {
 
         if($categoryQuery) {
-            return $query->where('categories.name', "like", "%$categoryQuery%");
+            $categoryId = Category::where("name", "like" ,"%$categoryQuery%")->first()->id;
+            return $query->where('category_id', $categoryId);
         }
     }
 

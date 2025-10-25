@@ -12,13 +12,14 @@ class MovieController extends Controller
 
     public function index(Request $request)
     {
-        $searchQuery = $request->query('search');
+        $movies = Movie::query()
+            ->search($request->search)
+            ->category($request->category)
+            ->year($request->year)
+            ->with('category')
+            ->paginate(10);
 
-        if($searchQuery) {
-            return Movie::where('title', 'like', '%' . $searchQuery . '%')->paginate(10)->toResourceCollection();
-        }
-
-        return Movie::paginate(10)->toResourceCollection();
+        return $movies->toResourceCollection();
     }
 
 
