@@ -10,12 +10,15 @@ use App\Models\User;
 class MovieController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-//        $movies = Movie::all();
+        $searchQuery = $request->query('search');
 
-//        return ['movies' => $movies];
-        return Movie::paginate(15)->toResourceCollection();
+        if($searchQuery) {
+            return Movie::where('title', 'like', '%' . $searchQuery . '%')->paginate(10)->toResourceCollection();
+        }
+
+        return Movie::paginate(10)->toResourceCollection();
     }
 
 
