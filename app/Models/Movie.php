@@ -20,6 +20,8 @@ class Movie extends Model
         'category_id',
     ];
 
+
+    // _____________________ Relations ____________________________
     public function category() {
         return $this->belongsTo(Category::class);
     }
@@ -35,5 +37,32 @@ class Movie extends Model
     public function favorites() {
         return $this->hasMany(Favorite::class);
     }
+
+
+
+    // _____________________ Scopes ____________________________
+
+    public function scopeSearch($query, $searchQuery) {
+
+        if($searchQuery) {
+            return $query->where('title', 'like', '%' . $searchQuery . '%')
+                ->orWhere('description', 'like', '%' . $searchQuery . '%');
+        }
+    }
+
+    public function scopeCategory($query, $categoryQuery) {
+
+        if($categoryQuery) {
+            return $query->where('categories.name', "like", "%$categoryQuery%");
+        }
+    }
+
+    public function scopeYear($query, $yearQuery){
+
+        if($yearQuery) {
+            return $query->where('release_year', $yearQuery);
+        }
+    }
+
 
 }
