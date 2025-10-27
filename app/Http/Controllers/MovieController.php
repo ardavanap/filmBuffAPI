@@ -24,7 +24,7 @@ class MovieController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(MovieRequest $request)
     {
         $validatedData = $request;
         $path = $request->file('poster')->store('posters', "public");

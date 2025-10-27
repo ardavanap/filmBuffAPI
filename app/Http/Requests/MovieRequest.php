@@ -14,7 +14,7 @@ class MovieRequest extends FormRequest
      */
     public function authorize(): true
     {
-        return true;
+        return Auth::guard('sanctum')->user()->isAdmin();
     }
 
     /**

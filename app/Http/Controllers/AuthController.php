@@ -40,8 +40,6 @@ class AuthController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        // TODO: Login user
-
         $user = User::where('email', $validatedData['email'])->first();
 
         if(!$user || !Hash::check($validatedData['password'], $user->password)){
