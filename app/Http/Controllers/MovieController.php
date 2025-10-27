@@ -26,7 +26,7 @@ class MovieController extends Controller
 
     public function store(MovieRequest $request)
     {
-        $validatedData = $request;
+        $validatedData = $request->validated();
         $path = $request->file('poster')->store('posters', "public");
 
         $movie = Movie::create([
@@ -41,27 +41,21 @@ class MovieController extends Controller
 
 //        return dd($movie);
 
-        return Movie::find($movie->id)->toResource();
+        return $movie->fresh()->toResource();
     }
 
 
     public function show(string $id)
     {
-        return Movie::findOrFail($id)->toResource();
+        return Movie::with("category")->findOrFail($id)->toResource();
     }
 
 
-    public function update(Request $request, string $id)
+    public function update(MovieRequest $request, string $id)
     {
-        $validated = $request->validate([
-            'title' => 'nullable|string|max:255',
-            'description' => 'nullable|string|max:500',
-            'release_year' => 'nullable',
-            'duration' => 'nullable|integer',
-            'trailer_url' => 'nullable|string|max:255',
-        ]);
+        $validated = $request->validated();
 
-        $movie = Movie::find($id);
+        $movie = Movie::findOrFail($id);
 
         $movie->update($validated);
 
@@ -78,7 +72,8 @@ class MovieController extends Controller
         if(!User::isAdmin()){
             return ["message" => "Unauthorized"];
         }
-        Movie::destroy($id);
+
+        Movie::findOrFail($id)->delete();
 
         return ["message" => "Movie deleted"];
     }
