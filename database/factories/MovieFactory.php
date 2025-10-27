@@ -20,7 +20,7 @@ class MovieFactory extends Factory
             "title" => $this->faker->name(),
             "description" => $this->faker->text(),
             "release_year" => $this->faker->year('now'),
-            "duration" => $this->faker->numberBetween(1940, 2025),
+            "duration" => $this->faker->numberBetween(10, 220),
             "poster" => $this->faker->imageUrl(),
             "trailer_url" => $this->faker->url(),
             "category_id" => $this->faker->numberBetween(1,19),
