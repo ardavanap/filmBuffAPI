@@ -76,6 +76,10 @@ requests:
   
   --------------------------------------------------------------------------------
 
+### Endpoints Usage
+
+For a detailed usage of this endpoint and examples of responses, [click here](endpoint-usage-tutorial.md)
+
 
 ## 📦 Installation
 
