@@ -73,6 +73,7 @@ requests:
                                                            movies
 
   **Favorites**   POST            `/movie/{id}/favorite`   Mark movie as favorite
+  
   --------------------------------------------------------------------------------
 
 
