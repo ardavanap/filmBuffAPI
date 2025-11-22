@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\V1;
 
+use App\Http\Requests\V1\AuthRegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register(Request $request){
+    public function register(AuthRegisterRequest $request){
 
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6',
-        ]);
+        $validated = $request->validated();
 
         $user = User::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => bcrypt($validatedData['password']),
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
         ]);
 
         $token = $user->createToken($request->name);
@@ -33,14 +30,11 @@ class AuthController extends Controller
 
     public function login(Request $request){
 
-        $validatedData = $request->validate([
-            'email' => 'required|email|max:255',
-            'password' => 'required|min:6',
-        ]);
+        $validated = $request->validated();
 
-        $user = User::where('email', $validatedData['email'])->first();
+        $user = User::where('email', $validated['email'])->first();
 
-        if(!$user || !Hash::check($validatedData['password'], $user->password)){
+        if(!$user || !Hash::check($validated['password'], $user->password)){
             return ['error' => 'The provided credentials are incorrect.'];
         }
 
@@ -55,6 +49,10 @@ class AuthController extends Controller
     public function logout(Request $request){
 
         $request->user()->tokens()->delete();
+
+        return [
+            'message' => 'Logged out successfully'
+        ];
 
     }
 
