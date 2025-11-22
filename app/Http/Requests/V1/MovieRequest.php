@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Movie;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MovieRequest extends FormRequest

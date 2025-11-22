@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
-use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\MovieRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\V1\MovieRequest;
 use App\Models\Movie;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
