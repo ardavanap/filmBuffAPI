@@ -8,7 +8,7 @@ Auhtenication using Laravel sanctum and bearer-token-based auth.
 Register as user using name and email and password. response contains your generated token.
 ### Method: POST
 >```
->http://127.0.0.1:8000/api/auth/register
+>http://127.0.0.1:8000/api/v1/auth/register
 >```
 ### Body (**raw**)
 
@@ -66,7 +66,7 @@ StartFragment
 EndFragment
 ### Method: POST
 >```
->http://127.0.0.1:8000/api/auth/login
+>http://127.0.0.1:8000/api/v1/auth/login
 >```
 ### Headers
 
@@ -148,7 +148,7 @@ EndFragment
 Fetch all movies. pagination used and has manny pages. each page contains 10 movies.
 ### Method: GET
 >```
->http://127.0.0.1:8000/api/movie/
+>http://127.0.0.1:8000/api/v1/movie/
 >```
 ### Headers
 
@@ -213,7 +213,7 @@ Fetch all movies. pagination used and has manny pages. each page contains 10 mov
 This way you can access second or further pages of paginated list of movies.
 ### Method: GET
 >```
->http://127.0.0.1:8000/api/movie?page=2
+>http://127.0.0.1:8000/api/v1/movie?page=2
 >```
 ### Query Params
 
@@ -236,7 +236,7 @@ This way you can access second or further pages of paginated list of movies.
 Fetch movies that contain the search term in their title or description.
 ### Method: GET
 >```
->http://127.0.0.1:8000/api/movie?search=green
+>http://127.0.0.1:8000/api/v1/movie?search=green
 >```
 ### Headers
 
@@ -266,7 +266,7 @@ Fetch movies that contain the search term in their title or description.
 fetch movies with a specific category.
 ### Method: GET
 >```
->http://127.0.0.1:8000/api/movie?category=action
+>http://127.0.0.1:8000/api/v1/movie?category=action
 >```
 ### Headers
 
@@ -296,7 +296,7 @@ fetch movies with a specific category.
 Fetch movies by their release year.
 ### Method: GET
 >```
->http://127.0.0.1:8000/api/movie?year=2005
+>http://127.0.0.1:8000/api/v1/movie?year=2005
 >```
 ### Headers
 
@@ -326,7 +326,7 @@ Fetch movies by their release year.
 Combine queries for more specific needs.
 ### Method: GET
 >```
->http://127.0.0.1:8000/api/movie?year=2005&search=Torphy&category=action
+>http://127.0.0.1:8000/api/v1/movie?year=2005&search=Torphy&category=action
 >```
 ### Headers
 
@@ -358,7 +358,7 @@ Combine queries for more specific needs.
 Store a movie (admin Only).
 ### Method: POST
 >```
->http://127.0.0.1:8000/api/movie
+>http://127.0.0.1:8000/api/v1/movie
 >```
 ### Headers
 
@@ -444,7 +444,7 @@ Retrive poster of a movie. The path to poster can be retrieved by fetching the m
 Fetch a movie by its id
 ### Method: GET
 >```
->http://127.0.0.1:8000/api/movie/4
+>http://127.0.0.1:8000/api/v1/movie/4
 >```
 ### 🔑 Authentication bearer
 
@@ -471,7 +471,7 @@ Fetch a movie by its id
 Remove a movie (admin only).
 ### Method: DELETE
 >```
->http://127.0.0.1:8000/api/movie/1
+>http://127.0.0.1:8000/api/v1/movie/1
 >```
 ### 🔑 Authentication bearer
 
@@ -500,7 +500,7 @@ Update any field of a movie (admin only).
 Provide desierd movie ID in url.
 ### Method: PATCH
 >```
->http://127.0.0.1:8000/api/movie/4/
+>http://127.0.0.1:8000/api/v1/movie/4/
 >```
 ### Headers
 
@@ -557,7 +557,7 @@ Show comments of a movie.
 Provide movie ID in url first.
 ### Method: GET
 >```
->http://127.0.0.1:8000/api/movie/9/comment
+>http://127.0.0.1:8000/api/v1/movie/9/comment
 >```
 ### Headers
 
@@ -598,7 +598,7 @@ Add a comment on a movie.
 Provide movie ID in url first.
 ### Method: POST
 >```
->http://127.0.0.1:8000/api/movie/4/comment
+>http://127.0.0.1:8000/api/v1/movie/4/comment
 >```
 ### Body (**raw**)
 
@@ -627,7 +627,7 @@ Fetch rating of a movie.
 Provide movie ID in url first.
 ### Method: GET
 >```
->http://127.0.0.1:8000/api/movie/10/rating
+>http://127.0.0.1:8000/api/v1/movie/10/rating
 >```
 ### Headers
 
@@ -661,7 +661,7 @@ Rate a movie.
 Provide movie ID in url first.
 ### Method: POST
 >```
->http://127.0.0.1:8000/api/movie/10/rate
+>http://127.0.0.1:8000/api/v1/movie/10/rate
 >```
 ### Headers
 
@@ -695,7 +695,7 @@ add or remove a movie to/from your favorite movies list.
 Fetch your favorite movies.
 ### Method: GET
 >```
->http://127.0.0.1:8000/api/user/favorites
+>http://127.0.0.1:8000/api/v1/user/favorites
 >```
 ### Headers
 
@@ -720,7 +720,7 @@ Add or remove a movie as favorite.
 Provide movie ID in url first.
 ### Method: POST
 >```
->http://127.0.0.1:8000/api/movie/20/favorite
+>http://127.0.0.1:8000/api/v1/movie/20/favorite
 >```
 ### Headers
 

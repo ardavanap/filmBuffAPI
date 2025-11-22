@@ -39,40 +39,40 @@ requests:
   --------------------------------------------------------------------------------
   Module          Method          Endpoint                 Description
   --------------- --------------- ------------------------ -----------------------
-  **Auth**        POST            `/auth/register`         Register a new user
+  **Auth**        POST            `/api/v1/auth/register`         Register a new user
 
-  **Auth**        POST            `/auth/login`            Log in and receive
+  **Auth**        POST            `/api/v1/auth/login`            Log in and receive
                                                            token
 
-  **Auth**        POST            `/auth/logout`           Log out the current
+  **Auth**        POST            `/api/v1/auth/logout`           Log out the current
                                                            user
 
-  **Movies**      GET             `/movie`                 Get all movies with
+  **Movies**      GET             `/api/v1/movie`                 Get all movies with
                                                            filters
 
-  **Movies**      GET             `/movie/{id}`            Get movie details
+  **Movies**      GET             `/api/v1/movie/{id}`            Get movie details
 
-  **Movies**      POST            `/movie`                 Create a new movie
+  **Movies**      POST            `/api/v1/movie`                 Create a new movie
 
-  **Movies**      PATCH           `/movie/{id}`            Update a movie
+  **Movies**      PATCH           `/api/v1/movie/{id}`            Update a movie
 
-  **Movies**      DELETE          `/movie/{id}`            Delete a movie
+  **Movies**      DELETE          `/api/v1/movie/{id}`            Delete a movie
 
-  **Comments**    GET             `/movie/{id}/comment`    Get comments for a
+  **Comments**    GET             `/api/v1/movie/{id}/comment`    Get comments for a
                                                            movie
 
-  **Comments**    POST            `/movie/{id}/comment`    Add a comment to a
+  **Comments**    POST            `/api/v1/movie/{id}/comment`    Add a comment to a
                                                            movie
 
-  **Rating**      GET             `/movie/{id}/rating`     Get movie's average
+  **Rating**      GET             `/api/v1/movie/{id}/rating`     Get movie's average
                                                            rating
 
-  **Rating**      POST            `/movie/{id}/rate`       Rate a movie
+  **Rating**      POST            `/api/v1/movie/{id}/rate`       Rate a movie
 
-  **Favorites**   GET             `/user/favorites`        Show user's favorite
+  **Favorites**   GET             `/api/v1/user/favorites`        Show user's favorite
                                                            movies
 
-  **Favorites**   POST            `/movie/{id}/favorite`   Mark movie as favorite
+  **Favorites**   POST            `/api/v1/movie/{id}/favorite`   Mark movie as favorite
   
   --------------------------------------------------------------------------------
 
