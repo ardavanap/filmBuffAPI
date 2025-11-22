@@ -26,17 +26,18 @@ class MovieController extends Controller
 
     public function store(MovieRequest $request)
     {
-        $validatedData = $request->validated();
+        $validated = $request->validated();
+
         $path = $request->file('poster')->store('posters', "public");
 
         $movie = Movie::create([
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
-            'release_year' => $validatedData['release_year'],
-            'duration' => $validatedData['duration'],
-            'poster' => Storage::url($path),
-            'trailer_url' => $validatedData['trailer_url'],
-            'category_id' => $validatedData['category_id'],
+            'title'         => $validated['title'],
+            'description'   => $validated['description'],
+            'release_year'  => $validated['release_year'],
+            'duration'      => $validated['duration'],
+            'poster'        => Storage::url($path),
+            'trailer_url'   => $validated['trailer_url'],
+            'category_id'   => $validated['category_id'],
         ]);
 
 //        return dd($movie);

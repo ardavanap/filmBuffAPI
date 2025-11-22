@@ -14,13 +14,11 @@ class CommentController extends Controller
 
     public function store(string $id ,Request $request){
 
-        $validated = $request->validate([
-            'content' => 'required|max:255|min:2',
-        ]);
+        $validated = $request->validate(['content' => 'required|max:255|min:2']);
 
         $comment = Comment::create([
             'user_id'   =>  $request->user()->id,
-            'content' => $validated['content'],
+            'content'   => $validated['content'],
             'movie_id'  =>  $id
         ]);
 

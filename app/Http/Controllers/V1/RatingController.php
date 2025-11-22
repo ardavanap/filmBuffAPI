@@ -27,9 +27,7 @@ class RatingController extends Controller
 
     public function store(Request $request, string $id) {
 
-        $validated = $request->validate([
-            'score' => 'required|integer|between:0,10',
-        ]);
+        $validated = $request->validate(['score' => 'required|integer|between:0,10']);
 
         Rating::create([
             'movie_id' => $id,
