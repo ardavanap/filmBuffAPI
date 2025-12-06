@@ -161,6 +161,8 @@ filmBuffAPI/
 │   │   │   ├── MovieController.php
 │   │   │   ├── RatingController.php
 │   │   ├── Requests/
+│   │   │   ├── AuthLoginRequest.php
+│   │   │   ├── AuthRegisterRequest.php
 │   │   │   ├── MovieRequest.php
 │   │   ├── Resources/
 │   │   │   ├── MovieResource.php
