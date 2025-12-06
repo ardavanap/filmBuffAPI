@@ -1,0 +1,78 @@
+services:
+  filmbuff: 
+    build:
+      args:
+        user: laravel_user
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    image: filmbuff_image
+    container_name: filmbuff_app
+    restart: unless-stopped
+    depends_on:
+      - filmbuff_mysql
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - filmbuff_network
+
+  filmbuff_web_server:
+    image: nginx:alpine
+    container_name: filmbuff_server_container
+    restart: unless-stopped
+    depends_on:
+      - filmbuff
+    ports:
+      - "8989:80"
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx/:/etc/nginx/conf.d
+    networks:
+      - filmbuff_network
+
+  filmbuff_mysql:
+    image: mysql:latest
+    container_name: filmbuff_mysql_container
+    restart: unless-stopped
+    ports: 
+      - "3307:3306"
+    volumes:
+      - filmbuff_mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456789"
+      MYSQL_DATABASE: "filmbuff"
+      MYSQL_USER: "owner"
+      MYSQL_PASSWORD: "test1234"
+      
+    networks:
+      - filmbuff_network
+
+  filmbuff_phpmyadmin:
+    image: phpmyadmin:5.2.3-apache
+    container_name: filmbuff_phpmyadmin_container
+    restart: unless-stopped
+    ports:
+      - "8888:80"
+    environment:
+      PMA_HOST: filmbuff_mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: 123456789
+
+    depends_on:
+      - filmbuff_mysql
+
+    networks:
+      - filmbuff_network
+
+volumes:
+  filmbuff_mysql_data:
+    driver: local
+
+
+networks:
+  filmbuff_network:
+    driver: bridge

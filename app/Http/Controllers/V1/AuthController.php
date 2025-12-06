@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\V1;
 
 use App\Http\Requests\V1\AuthRegisterRequest;
+use App\Http\Requests\V1\AuthLoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +29,7 @@ class AuthController extends Controller
 
     }
 
-    public function login(Request $request){
+    public function login(AuthLoginRequest $request){
 
         $validated = $request->validated();
 

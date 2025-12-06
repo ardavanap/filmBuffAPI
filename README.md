@@ -84,10 +84,53 @@ For a detailed usage of this endpoint and examples of responses, [click here](en
 ## 📦 Installation
 
 ### Prerequisites
-- PHP 8.2 or later
+- PHP 8.4
 - Composer
 
-### 🧩 Setup
+### Using Docker
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ardavanap/filmBuffAPI/
+   cd filmBuffAPI
+   ```
+
+2. Create **.env** file :
+   ```bash
+   cp ./docker-compose/.env.example .env
+   ```
+
+3. Start Docker containers :
+   ```bash
+   docker compose up -d --build
+   ```
+
+4. Install Composer dependencies (inside PHP container) :
+   ```bash
+   docker compose exec filmbuff composer install
+   ```
+
+5. Generate application key :
+   ```bash
+    docker compose exec filmbuff php artisan key:generate
+   ```
+
+6. Run migrations and seed :
+   ```bash
+    docker compose exec filmbuff php artisan migrate --seed
+   ```
+
+7. Access the application in browser:
+   ```bash
+        # API on :
+    http://localhost:8989
+    
+       # phpmyadmin on :
+    http://localhost:8888
+
+   ```
+
+### 🧩 Using git clone
 
 ``` bash
 git clone https://github.com/yourusername/filmBuffAPI.git
